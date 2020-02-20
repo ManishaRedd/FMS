@@ -40,7 +40,7 @@ public class FlightDaoImpl implements FlightDao {
 	boolean flag = list.stream().anyMatch(p-> p.getFlightNumber()==flight.getFlightNumber());
 	if(flag==true)
 	{
-	//list.set
+	list.add(flight);
 	}
 	else
 	{

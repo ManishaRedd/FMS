@@ -63,10 +63,18 @@ public class Client {
 		case 2:
 		System.out.println("Enter flightnumber");
 		int flightNumber=sc.nextInt();
+		sc.nextLine();
+		System.out.println(" Enter the new carier name ");
+		String carrier = sc.next();
+		System.out.println(" Enter the new Flight model");
+		String model1 =sc.next();
+		System.out.println("Enter the seat capacity ");
+		int x =sc.nextInt();
+		Flight f = new Flight(flightNumber,model1,carrier,x);
 		try
 		{
-		flight=flightservice.modifyFlight(flight);
-		System.out.println("carrier name="+flight.getCarrierName()+"Flight model="+flight.getFlightModel()+"Seat Capacity="+flight.getSeatCapacity());
+		flight=flightservice.modifyFlight(f);
+		System.out.println("carrier name="+f.getCarrierName()+"Flight model="+f.getFlightModel()+"Seat Capacity="+f.getSeatCapacity());
 
 		}
 		catch(FlightException e)
