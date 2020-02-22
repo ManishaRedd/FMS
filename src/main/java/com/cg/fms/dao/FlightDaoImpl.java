@@ -35,20 +35,16 @@ public class FlightDaoImpl implements FlightDao {
 	return flight.getFlightNumber();
 	}
 
-	public Flight modifyFlight(Flight flight) throws FlightException {
+	public Flight viewFlight(int flightNumber) throws FlightException {
+		boolean flag = list.stream().anyMatch(p-> p.getFlightNumber()==flightNumber);
+		if(!flag)
+		{
+		throw new FlightException("flight not found");
 
-	boolean flag = list.stream().anyMatch(p-> p.getFlightNumber()==flight.getFlightNumber());
-	if(flag==true)
-	{
-	list.add(flight);
-	}
-	else
-	{
-	throw new FlightException("FLIGHT NOT FOUND");
-	}
-	return flight;
-	}
-
+		}
+		Flight flight1 =list.stream().filter(p-> p.getFlightNumber()==flightNumber).findFirst().get();
+		return flight1;
+		}
 	public void deleteFlight(int flightNumber) throws FlightException {
 		boolean flag =list.stream().anyMatch(p-> p.getFlightNumber()==flightNumber);
 		if(!flag) {
@@ -58,29 +54,7 @@ public class FlightDaoImpl implements FlightDao {
     
 	list.remove(flight);
 	}
-
-	public Flight viewFlight(int flightNumber) throws FlightException {
-
-	Flight flight=null;
-	boolean flag = list.stream().anyMatch(p-> p.getFlightNumber()==flightNumber);
-	if(!flag)
-	{
-	throw new FlightException("flight not found");
-
-	}
-	List<Flight> li=list.stream().collect(Collectors.toList());
-	for(Flight f:li)
-	{
-		if(f.getFlightNumber()==flightNumber)
-		{
-			int index =list.indexOf(f);
-			flight=list.get(index);
-			break;
-	}
-	}
-	return flight;
-	}
-
+	
 	public List<Flight> viewFlight() throws FlightException {
 
 	List<Flight> flightlist=list.stream().collect(Collectors.toList());

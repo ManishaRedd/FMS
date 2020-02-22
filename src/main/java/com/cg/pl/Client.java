@@ -13,10 +13,6 @@ public class Client {
 
 	public static void main(String[] args) {
 		
-
-
-
-
 		Scanner sc=new Scanner(System.in);
 		FlightService flightservice=new FlightServiceImpl();
 		int choice=0;
@@ -26,11 +22,10 @@ public class Client {
 
 		{
 		System.out.println("1.Add flight");
-		System.out.println("2.Modify flight");
+		System.out.println("2.view flight");
 		System.out.println("3.Delete flight");
-		System.out.println("4.View flight");
-		System.out.println("5.View list of flights");
-		System.out.println("6.Exit");
+		System.out.println("4.View list of flights");
+		System.out.println("5.Exit");
 
 		choice=sc.nextInt();
 		sc.nextLine();
@@ -63,42 +58,6 @@ public class Client {
 		case 2:
 		System.out.println("Enter flightnumber");
 		int flightNumber=sc.nextInt();
-		sc.nextLine();
-		System.out.println(" Enter the new carier name ");
-		String carrier = sc.next();
-		System.out.println(" Enter the new Flight model");
-		String model1 =sc.next();
-		System.out.println("Enter the seat capacity ");
-		int x =sc.nextInt();
-		Flight f = new Flight(flightNumber,model1,carrier,x);
-		try
-		{
-		flight=flightservice.modifyFlight(f);
-		System.out.println("carrier name="+f.getCarrierName()+"Flight model="+f.getFlightModel()+"Seat Capacity="+f.getSeatCapacity());
-
-		}
-		catch(FlightException e)
-		{
-		System.err.println(e.getMessage());
-		}
-		break;
-		case 3:
-		System.out.println("Enter flightnumber");
-		flightNumber=sc.nextInt();
-		try
-		{
-		flightservice.deleteFlight(flightNumber);
-		System.out.println("flight deleted");
-
-		}
-		catch(FlightException e)
-		{
-		System.err.println(e.getMessage());
-		}
-		break;
-		case 4:
-		System.out.println("Enter flightnumber");
-		flightNumber=sc.nextInt();
 		try
 		{
 		flightservice.viewFlight(flightNumber);
@@ -110,7 +69,22 @@ public class Client {
 		System.err.println(e.getMessage());
 		}
 		break;
-		case 5:
+		case 3:
+		System.out.println("Enter flightnumber");
+		 flightNumber=sc.nextInt();
+		try
+		{
+		flightservice.deleteFlight(flightNumber);
+		System.out.println("flight deleted");
+
+		}
+		catch(FlightException e)
+		{
+		System.err.println(e.getMessage());
+		}
+		break;
+		
+		case 4:
 		try
 		{
 		list=flightservice.viewFlight();

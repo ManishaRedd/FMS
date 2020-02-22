@@ -35,14 +35,6 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	public int addFlight(Flight flight) throws FlightException {
-	/*String flightnum=String.valueOf(flight.getFlightNumber());
-	boolean flag1=flightnum.matches("[0-9]{4}");
-	if(!flag1)
-	{
-	throw new FlightException("flight number should be");
-	}*/
-	//String name=flight.getCarrierName();
-	//boolean flag=validateFlight(name);
 	boolean flag1=false,flag2=false;
 	flag1=flight.getCarrierName().matches("[a-zA-Z]+");
 	String seatCapacity=String.valueOf(flight.getSeatCapacity());
@@ -58,17 +50,16 @@ public class FlightServiceImpl implements FlightService {
 	return flightnum1;
 	}
 
-	public Flight modifyFlight(Flight flight) throws FlightException {
+	public Flight viewFlight(int flightNumber) throws FlightException {
 
-	String flightnum=String.valueOf(flight.getFlightNumber());
-	boolean flag=flightnum.matches("[0-9]{4}");
-	if(!flag)
-	{
-	throw new FlightException("Invalid flight number ");
-	}
-	return flightDao.modifyFlight(flight);
-	}
-
+		String flightnum=String.valueOf(flightNumber);
+		boolean flag=flightnum.matches("[0-9]{4}");
+		if(!flag)
+		{
+		throw new FlightException("Invalid flight number ");
+		}
+		return flightDao.viewFlight(flightNumber);
+		}
 	public void deleteFlight(int flightNumber) throws FlightException {
 
 	String flightnum=String.valueOf(flightNumber);
@@ -80,16 +71,6 @@ public class FlightServiceImpl implements FlightService {
 	flightDao.deleteFlight(flightNumber);
 	}
 
-	public Flight viewFlight(int flightNumber) throws FlightException {
-
-	String flightnum=String.valueOf(flightNumber);
-	boolean flag=flightnum.matches("[0-9]{4}");
-	if(!flag)
-	{
-	throw new FlightException("Invalid flight number ");
-	}
-	return flightDao.viewFlight(flightNumber);
-	}
 
 	public List<Flight> viewFlight() throws FlightException {
 
